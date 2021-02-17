@@ -44,3 +44,5 @@ Route::get('/address', function(){
     $addresses = Address::all();
     return view('users.address', compact('addresses'));
 });
+
+Route::resource('posts', 'PostController');
