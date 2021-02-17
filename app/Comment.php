@@ -9,4 +9,8 @@ class Comment extends Model
     protected $fillable = [
         'post_id', 'description',
     ];
+
+    public function post(){
+        return $this->belongsTo(Post::class);
+    }
 }
