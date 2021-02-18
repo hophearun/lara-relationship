@@ -7,16 +7,34 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     protected $fillable = [
-        'user_id', 'title', 'description',
+        'custom_post_type_id', 
+        'user_id', 
+        'title', 
+        'content',
+        'excerpt',
+        'trans_fileds',
+        'extras_fields',
+        'media',
+        'seo_meta',
+        'featured_image',
+        'featured',
+        'password',
+        'parent_id',
+        'post_ordering',
+        'post_created_at',
+        'post_expire_at',
     ];
 
-    public function user(){
-        return $this->belongsTo(User::class)->withDefault([
-            'name' => 'Guest Author',
-        ]);
-    }
+    protected $casts = [
+        'title' => 'array',
+        'content' => 'array',
+        'excerpt' => 'array',
+        'trans_fileds' => 'array',
+        'extras_fields' => 'array',
+        'media' => 'array',
+        'seo_meta' => 'array',
+        'post_created_at' => 'datetime',
+        'post_expire_at' => 'datetime',
+    ];
 
-    public function comments(){
-        return $this->hasMany(Comment::class);
-    }
 }

@@ -46,3 +46,6 @@ Route::get('/address', function(){
 });
 
 Route::resource('posts', 'PostController');
+Route::resource('cpt', 'CustomPostTypeController');
+Route::get('/categories/create/{cpt:name}', 'CategoryController@create')->name('create');
+Route::resource('categories', 'CategoryController');

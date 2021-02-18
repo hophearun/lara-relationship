@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCommentsTable extends Migration
+class CreateCatalogsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,14 @@ class CreateCommentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('comments', function (Blueprint $table) {
+        Schema::create('catalogs', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id');
-            $table->morphs('commentable');
-            $table->text('content');
-            $table->bigInteger('parent_id');
-            $table->ipAddress('ip');
-            $table->macAddress('device');
+            $table->json('name');
+            $table->json('description')->nullable();
+            $table->string('featured_image')->nullable();
+            $table->json('extras_fields')->nullable();
             $table->timestamps();
+            $table->softDeletes('deleted_at', 0);
         });
     }
 
@@ -32,6 +31,6 @@ class CreateCommentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comments');
+        Schema::dropIfExists('catalogs');
     }
 }
