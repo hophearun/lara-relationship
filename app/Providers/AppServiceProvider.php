@@ -31,9 +31,9 @@ class AppServiceProvider extends ServiceProvider
                 'name','value'
             ])->keyBy('name')
             ->transform(function ($setting) {
-                $isJson = is_string($setting->value) && is_array(json_decode(json_decode($setting->value, true), true)) && (json_last_error() == JSON_ERROR_NONE) ? true : false;
+                $isJson = is_string($setting->value) && is_array(json_decode($setting->value, true)) && (json_last_error() == JSON_ERROR_NONE) ? true : false;
                 if($isJson)
-                    $value = json_decode(json_decode($setting->value, true), true); // return only the value
+                    $value = json_decode($setting->value, true); // return only the value
                 else $value = $setting->value;
                 return $value;
             })->toArray() // make it an array

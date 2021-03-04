@@ -14,7 +14,8 @@ class SettingController extends Controller
      */
     public function index()
     {
-        
+        // $setting = Setting::all();
+        // dd($setting[2]->value);
         return view('setting.create');
     }
 
@@ -39,9 +40,6 @@ class SettingController extends Controller
         
         $data = $request->except(['_token']);
         foreach($data as $name => $value){
-            if(is_array($value)){
-                $value = json_encode($value);
-            }
             Setting::updateOrCreate(['name' => $name], ['value'=>$value]);
         }
         //Setting::where('name', 'social_network')->update(['value'=>$data['social_network']]);

@@ -34,7 +34,7 @@ class JsonString implements CastsAttributes
      */
     public function set($model, $key, $value, $attributes)
     {
-        $isJson = is_string($value) && is_array(json_decode($value, true)) && (json_last_error() == JSON_ERROR_NONE) ? true : false;
+        $isJson = is_array($value) ? true : false;
         if(!$isJson)
             return $value;
         return json_encode($value);
